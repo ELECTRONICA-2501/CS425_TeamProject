@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Manage Records</title>
+    <link rel="stylesheet" href="templates/yerp.css" />
+  </head>
+  <body>
+    <h2>Manage Records</h2>
+    <form action="/records" method="post">
+      <input type="number" name="player_id" placeholder="Player ID" required />
+      <input type="number" name="game_id" placeholder="Game ID" required />
+      <input type="number" name="points" placeholder="Points" />
+      <input type="number" name="rebounds" placeholder="Rebounds" />
+      <input type="number" name="assists" placeholder="Assists" />
+      <input type="number" name="blocks" placeholder="Blocks" />
+      <input type="hidden" name="action" value="Add" />
+      <button type="submit">Add Record</button>
+    </form>
+
+    <h3>Current Records</h3>
+    <table>
+      <tr>
+        <th>Record ID</th>
+        <th>Player ID</th>
+        <th>Game ID</th>
+        <th>Points</th>
+        <th>Rebounds</th>
+        <th>Assists</th>
+        <th>Blocks</th>
+        <th>Actions</th>
+      </tr>
+      {% for record in records %}
+      <tr>
+        <td>{{ record.RecordID }}</td>
+        <td>{{ record.PlayerID }}</td>
+        <td>{{ record.GameID }}</td>
+        <td>{{ record.Points }}</td>
+        <td>{{ record.Rebounds }}</td>
+        <td>{{ record.Assists }}</td>
+        <td>{{ record.Blocks }}</td>
+        <td>
+          <!-- Example for Delete; you can similarly add Update functionality -->
+          <form action="/records" method="post">
+            <input
+              type="hidden"
+              name="record_id"
+              value="{{ record.RecordID }}"
+            />
+            <input type="hidden" name="action" value="Delete" />
+            <button type="submit">Delete</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+
+    <a href="/">Back to Home</a>
+  </body>
+</html>

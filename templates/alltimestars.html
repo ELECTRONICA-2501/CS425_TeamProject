@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Time Stars Management</title>
+    <link rel="stylesheet" href="yerp.css" />
+  </head>
+  <body>
+    <h1>All Time Stars</h1>
+    <form action="/alltimestars" method="post">
+      <input type="hidden" name="action" value="Add" />
+      <input
+        type="number"
+        name="player_id"
+        placeholder="Player ID (Optional)"
+      />
+      <input type="number" name="coach_id" placeholder="Coach ID (Optional)" />
+      <input type="number" name="season_id" placeholder="Season ID" required />
+      <button type="submit">Add Star</button>
+    </form>
+    <ul>
+      {% for star in alltimestars %}
+      <li>
+        Star ID: {{ star.StarID }}, Player ID: {{ star.PlayerID }}, Coach ID: {{
+        star.CoachID }}, Season ID: {{ star.SeasonID }}
+        <form action="/alltimestars" method="post" style="display: inline">
+          <input type="hidden" name="action" value="Delete" />
+          <input type="hidden" name="star_id" value="{{ star.StarID }}" />
+          <button type="submit">Delete</button>
+        </form>
+      </li>
+      {% else %}
+      <li>No all-time stars found.</li>
+      {% endfor %}
+    </ul>
+    <a href="/">Back to Home</a>
+  </body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Plays For Management</title>
+    <link rel="stylesheet" href="templates/yerp.css" />
+    <!-- Add any required CSS here -->
+  </head>
+  <body>
+    <h1>Plays For</h1>
+    <!-- Flash messages for errors -->
+    {% for message in get_flashed_messages(category_filter=["error"]) %}
+    <div class="alert alert-danger">{{ message }}</div>
+    {% endfor %}
+
+    <!-- Add Relationship Form -->
+    <form action="{{ url_for('manage_plays_for') }}" method="POST">
+      <input type="number" name="player_id" placeholder="Player ID" required />
+      <input type="number" name="team_id" placeholder="Team ID" required />
+      <input type="date" name="start_date" placeholder="Start Date" />
+      <input type="date" name="end_date" placeholder="End Date" />
+      <input type="submit" name="action" value="Add" />
+    </form>
+
+    <!-- List Relationships -->
+    <table>
+      <tr>
+        <th>Player ID</th>
+        <th>Team ID</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Actions</th>
+      </tr>
+      {% for play in plays_for %}
+      <tr>
+        <td>{{ play.PlayerID }}</td>
+        <td>{{ play.TeamID }}</td>
+        <td>{{ play.Start_Date }}</td>
+        <td>{{ play.End_Date }}</td>
+        <td>
+          <!-- Delete Relationship Form -->
+          <form action="{{ url_for('manage_plays_for') }}" method="POST">
+            <input type="hidden" name="player_id" value="{{ play.PlayerID }}" />
+            <input type="hidden" name="team_id" value="{{ play.TeamID }}" />
+            <input type="submit" name="action" value="Delete" />
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+
+    <a href="{{ url_for('index') }}">Back to Home</a>
+  </body>
+</html>

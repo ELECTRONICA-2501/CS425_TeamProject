@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Manage Teams</title>
+    <script>
+      function setUpdate(teamID, teamName, state, city, arena) {
+        document.getElementById("team_id").value = teamID;
+        document.getElementById("team_name").value = teamName;
+        document.getElementById("state").value = state;
+        document.getElementById("city").value = city;
+        document.getElementById("arena").value = arena;
+        document.getElementById("teamFormButton").value = "Update";
+        window.scrollTo(0, 0); // Scroll to top to show the form
+      }
+
+      function clearForm() {
+        document.getElementById("teamForm").reset();
+        document.getElementById("team_id").value = "";
+        document.getElementById("teamFormButton").value = "Add";
+      }
+    </script>
+    <link rel="stylesheet" href="templates/yerp.css" />
+  </head>
+  <body>
+    <h1>Manage Teams</h1>
+
+    <form id="teamForm" method="POST">
+      <input type="hidden" id="team_id" name="team_id" />
+      <input
+        type="text"
+        id="team_name"
+        name="team_name"
+        placeholder="Team Name"
+        required
+      />
+      <input type="text" id="state" name="state" placeholder="State" required />
+      <input type="text" id="city" name="city" placeholder="City" required />
+      <input type="text" id="arena" name="arena" placeholder="Arena" required />
+      <input type="submit" id="teamFormButton" name="action" value="Add" />
+      <input type="button" onclick="clearForm()" value="Clear" />
+    </form>
+
+    <h2>Teams</h2>
+    <ul>
+      {% for team in teams %}
+      <li>
+        {{ team.TeamID }} - {{ team.Team_Name }}, {{ team.State }}, {{ team.City
+        }}, {{ team.Arena }}
+        <button
+          onclick="setUpdate('{{ team.TeamID }}', '{{ team.Team_Name }}', '{{ team.State }}', '{{ team.City }}', '{{ team.Arena }}')"
+        >
+          Edit
+        </button>
+        <form method="POST" style="display: inline">
+          <input type="hidden" name="team_id" value="{{ team.TeamID }}" />
+          <input type="submit" name="action" value="Delete" />
+        </form>
+      </li>
+      {% endfor %}
+      <!-- Back to Home Link -->
+      <p><a href="/">Back to Home</a></p>
+    </ul>
+  </body>
+</html>
