@@ -4,7 +4,83 @@
     <meta charset="UTF-8" />
     <title>Manage Records</title>
     <link rel="stylesheet" href="templates/yerp.css" />
+    <style>
+      /* Base styles */
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f3f3f3;
+        color: #333;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Headings */
+      h2 {
+        font-size: 2em;
+        color: #17408b;
+        margin-bottom: 20px;
+      }
+
+      h3 {
+        font-size: 1.5em;
+        color: #c9082a;
+        margin-top: 30px;
+      }
+
+      /* Forms */
+      form {
+        margin-bottom: 20px;
+      }
+
+      input[type="number"],
+      input[type="submit"] {
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ddd;
+      }
+
+      input[type="submit"] {
+        background-color: #d41010;
+        color: white;
+        cursor: pointer;
+        border: none;
+      }
+
+      input[type="submit"]:hover {
+        background-color: #17408b;
+      }
+
+      /* Tables */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+      }
+
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 10px;
+      }
+
+      th {
+        background-color: #17408b;
+        color: white;
+      }
+
+      /* Links */
+      a {
+        color: #c9082a;
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+    </style>
   </head>
+
   <body>
     <h2>Manage Records</h2>
     <form action="/records" method="post">

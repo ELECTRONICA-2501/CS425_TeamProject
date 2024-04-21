@@ -3,25 +3,91 @@
   <head>
     <meta charset="UTF-8" />
     <title>Manage Teams</title>
-    <script>
-      function setUpdate(teamID, teamName, state, city, arena) {
-        document.getElementById("team_id").value = teamID;
-        document.getElementById("team_name").value = teamName;
-        document.getElementById("state").value = state;
-        document.getElementById("city").value = city;
-        document.getElementById("arena").value = arena;
-        document.getElementById("teamFormButton").value = "Update";
-        window.scrollTo(0, 0); // Scroll to top to show the form
+    <link rel="stylesheet" href="templates/yerp.css" />
+    <style>
+      /* Base styles */
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f3f3f3;
+        color: #333;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
       }
 
-      function clearForm() {
-        document.getElementById("teamForm").reset();
-        document.getElementById("team_id").value = "";
-        document.getElementById("teamFormButton").value = "Add";
+      h1,
+      h2 {
+        font-weight: bold;
+        color: #17408b;
+        margin-bottom: 20px;
       }
-    </script>
-    <link rel="stylesheet" href="templates/yerp.css" />
+
+      form {
+        margin-bottom: 20px;
+      }
+
+      input[type="text"],
+      input[type="submit"],
+      input[type="button"] {
+        padding: 10px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+      }
+
+      input[type="submit"] {
+        background-color: #d41010;
+        color: white;
+        cursor: pointer;
+        border: none;
+      }
+
+      input[type="submit"]:hover {
+        background-color: #17408b;
+      }
+
+      input[type="button"] {
+        background-color: #ddd;
+        color: #333;
+      }
+
+      input[type="button"]:hover {
+        background-color: #ccc;
+      }
+
+      ul {
+        list-style: none;
+        padding-left: 0;
+      }
+
+      li {
+        margin-bottom: 10px;
+      }
+
+      button {
+        padding: 8px;
+        background-color: #17408b;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #0d2b5a;
+      }
+
+      /* Links */
+      a {
+        color: #c9082a;
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+    </style>
   </head>
+
   <body>
     <h1>Manage Teams</h1>
 
@@ -59,7 +125,7 @@
       </li>
       {% endfor %}
       <!-- Back to Home Link -->
-      <p><a href="/">Back to Home</a></p>
+      <li><a href="/">Back to Home</a></li>
     </ul>
   </body>
 </html>
