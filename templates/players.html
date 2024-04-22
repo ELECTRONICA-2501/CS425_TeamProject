@@ -1,70 +1,99 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Manage Players</title>
-    <link rel="stylesheet" href="templates/yerp.css" />
     <style>
       /* Base styles */
       body {
         font-family: "Arial", sans-serif;
-        background-color: #f3f3f3;
-        color: #333;
+        background-color: #1d428a; /* NBA dark blue */
+        color: #ffffff;
         line-height: 1.6;
         margin: 0;
-        padding: 0;
+        padding: 20px;
+      }
+
+      /* Container */
+      .container {
+        max-width: 1000px;
+        margin: auto;
+        padding: 20px;
+        background-color: #ffffff;
+        color: #333;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        border-radius: 8px;
       }
 
       /* Headings */
       h1 {
-        font-size: 2.5em;
-        color: #17408b;
-        margin-bottom: 20px;
+        font-size: 2.4em;
+        color: #c9082a; /* NBA red */
+        text-align: center;
+        margin-bottom: 0.5em;
       }
 
       /* Forms */
       form {
-        margin-bottom: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      label {
+        margin: 10px 0;
+        display: block;
       }
 
       input[type="text"],
       input[type="submit"] {
-        padding: 10px;
-        margin: 10px 0;
-        border: 1px solid #ddd;
+        padding: 8px;
+        margin-top: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        width: 100%;
       }
 
       input[type="submit"] {
-        background-color: #d41010;
+        background-color: #c9082a; /* NBA red */
         color: white;
         cursor: pointer;
         border: none;
+        transition: background-color 0.3s;
       }
 
       input[type="submit"]:hover {
-        background-color: #17408b;
+        background-color: #17408b; /* NBA dark blue */
       }
 
       /* Tables */
       table {
         width: 100%;
         border-collapse: collapse;
-        margin-bottom: 20px;
+        margin-top: 20px;
       }
 
       th,
       td {
         border: 1px solid #ddd;
-        padding: 10px;
+        padding: 12px;
+        text-align: left;
       }
 
       th {
-        background-color: #17408b;
+        background-color: #17408b; /* NBA dark blue */
         color: white;
+      }
+
+      td {
+        background-color: #fff;
+        color: #333;
       }
 
       /* Links */
       a {
-        color: #c9082a;
+        color: #007bff;
         text-decoration: none;
       }
 
@@ -73,38 +102,39 @@
       }
     </style>
   </head>
-
   <body>
-    <h1>Players</h1>
-    <form method="post">
-      <!-- Add Player Form -->
-      Name: <input type="text" name="name" /> Team ID:
-      <input type="text" name="team_id" /> Position:
-      <input type="text" name="position" />
-      <input type="submit" name="add" value="Add Player" />
-    </form>
-    <table>
-      <tr>
-        <th>Player ID</th>
-        <th>Name</th>
-        <th>Team ID</th>
-        <th>Position</th>
-      </tr>
-      {% for player in players %}
-      <tr>
-        <td>{{ player[0] }}</td>
-        <td>{{ player[1] }}</td>
-        <td>{{ player[2] }}</td>
-        <td>{{ player[3] }}</td>
-        <td>
-          <form method="post">
-            <input type="hidden" name="player_id" value="{{ player[0] }}" />
-            <input type="submit" name="delete" value="Delete" />
-          </form>
-        </td>
-      </tr>
-      {% endfor %}
-    </table>
-    <a href="/">Back to Home</a>
+    <div class="container">
+      <h1>NBA Player Management</h1>
+      <form method="post">
+        <label>Name: <input type="text" name="name" /></label>
+        <label>Team ID: <input type="text" name="team_id" /></label>
+        <label>Position: <input type="text" name="position" /></label>
+        <input type="submit" name="add" value="Add Player" />
+      </form>
+      <table>
+        <tr>
+          <th>Player ID</th>
+          <th>Name</th>
+          <th>Team ID</th>
+          <th>Position</th>
+          <th>Action</th>
+        </tr>
+        {% for player in players %}
+        <tr>
+          <td>{{ player[0] }}</td>
+          <td>{{ player[1] }}</td>
+          <td>{{ player[2] }}</td>
+          <td>{{ player[3] }}</td>
+          <td>
+            <form method="post">
+              <input type="hidden" name="player_id" value="{{ player[0] }}" />
+              <input type="submit" name="delete" value="Delete" />
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+      <a href="/">Back to Home</a>
+    </div>
   </body>
 </html>

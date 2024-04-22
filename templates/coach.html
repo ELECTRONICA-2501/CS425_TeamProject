@@ -8,84 +8,103 @@
       /* Base styles */
       body {
         font-family: "Arial", sans-serif;
-        background-color: #f3f3f3;
-        color: #333;
+        background-color: #0a2240; /* Deep NBA Blue */
+        color: #fff; /* White text for better contrast */
         line-height: 1.6;
         margin: 0;
-        padding: 0;
+        padding: 20px;
       }
 
       /* Headings */
+      h2,
+      h3 {
+        font-weight: bold;
+        color: #c9082a; /* NBA Red */
+      }
+
       h2 {
-        font-size: 2em;
-        color: #17408b;
+        font-size: 2.5em; /* Slightly larger to make it more prominent */
       }
 
       h3 {
-        font-size: 1.5em;
-        color: #c9082a;
+        font-size: 2em;
+        margin-top: 40px; /* More space before the section */
       }
 
       /* Forms */
       form {
-        margin-bottom: 20px;
+        background: #ffffff; /* White background for form */
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+        color: #333; /* Dark text for readability */
+        margin-bottom: 40px; /* More space below the form */
+      }
+
+      input[type="text"],
+      input[type="number"],
+      button {
+        width: 100%;
+        padding: 15px; /* More padding for better touch interaction */
+        margin-top: 10px; /* Consistent spacing */
+        border-radius: 4px; /* Rounded corners */
       }
 
       input[type="text"],
       input[type="number"] {
-        padding: 10px;
-        margin: 10px 0;
-        border: 1px solid #ddd;
+        border: 1px solid #ddd; /* Subtle border */
       }
 
-      input[type="submit"],
       button {
-        padding: 10px;
-        margin: 10px 0;
-        border: none;
-        background-color: #d41010;
-        color: white;
-        cursor: pointer;
+        background-color: #1d428a; /* Darker NBA Blue */
+        color: #ffffff; /* White text */
+        font-size: 1.1em; /* Larger font size */
+        border: none; /* No border */
       }
 
-      input[type="submit"]:hover,
       button:hover {
-        background-color: #17408b;
+        background-color: #17408b; /* Hover effect */
       }
 
       /* Table */
       table {
         width: 100%;
         border-collapse: collapse;
-        margin-bottom: 20px;
+      }
+
+      th,
+      td {
+        padding: 12px;
+        border: 1px solid #ddd; /* Light grey border for readability */
+        text-align: left;
       }
 
       th {
-        background-color: #17408b;
-        color: white;
-        padding: 10px;
+        background-color: #17408b; /* NBA Blue */
+        color: #ffffff; /* White text */
       }
 
       td {
-        padding: 10px;
-      }
-
-      tr:nth-child(even) {
-        background-color: #f2f2f2;
+        background-color: #f2f2f2; /* Light grey background */
+        color: #333; /* Dark grey text for contrast */
       }
 
       tr:hover {
-        background-color: #ddd;
+        background-color: #ddd; /* Hover effect */
       }
 
       /* Links */
       a {
-        color: #c9082a;
+        color: #ffc633; /* Gold color for attention */
         text-decoration: none;
+        display: block;
+        width: fit-content;
+        margin: 20px auto;
+        font-size: 1.2em;
       }
 
       a:hover {
-        text-decoration: underline;
+        text-decoration: underline; /* Standard underline hover effect */
       }
     </style>
   </head>
@@ -109,7 +128,7 @@
       <button type="submit">Add Coach</button>
     </form>
 
-    <h3>Current Coach</h3>
+    <h3>Current Coaches</h3>
     <table>
       <tr>
         <th>Coach ID</th>
@@ -125,7 +144,6 @@
         <td>{{ coach.YearsExp }}</td>
         <td>{{ coach.ChampionshipsWon }}</td>
         <td>
-          <!-- Example for Delete; similarly, you can add Update functionality -->
           <form action="/coach" method="post">
             <input type="hidden" name="coach_id" value="{{ coach.CoachID }}" />
             <input type="hidden" name="action" value="Delete" />

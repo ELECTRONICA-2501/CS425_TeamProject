@@ -3,46 +3,105 @@
   <head>
     <meta charset="UTF-8" />
     <title>NBA Database Management</title>
-    <link rel="stylesheet" href="templates/yerp.css" />
     <style>
       /* Base styles */
       body {
-        font-family: "Arial", sans-serif;
-        background-color: #f3f3f3;
-        color: #333;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #002556fb; /* NBA deep blue background */
+        color: #fff; /* Adjusting text color to white for contrast */
         line-height: 1.6;
         margin: 0;
         padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
       }
 
       /* Headings */
       h1 {
-        font-size: 2.5em;
-        color: #17408b;
-        margin-bottom: 20px;
+        font-size: 3em;
+        color: #c9082a; /* vibrant NBA red */
+        margin-bottom: 0.5em;
+        text-shadow: 2px 2px 4px #222; /* Darker shadow for better visibility */
       }
 
       /* Navigation */
+      nav {
+        background-color: rgba(
+          255,
+          255,
+          255,
+          0.8
+        ); /* Semi-transparent white for legibility */
+        color: #004aad; /* Text color back to blue for contrast */
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 3px 3px 6px #222;
+        margin-bottom: 1em;
+      }
+
       nav ul {
         list-style: none;
         padding: 0;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
       }
 
       nav ul li {
-        display: inline;
-        margin-right: 20px;
+        margin: 0 20px;
       }
 
       nav ul li a {
         text-decoration: none;
-        color: #17408b;
+        color: #004aad; /* Blue text */
+        font-size: 1.4em;
+        padding: 10px 15px;
+        border-radius: 5px;
+        transition: background-color 0.3s, transform 0.3s;
       }
 
-      nav ul li a:hover {
-        text-decoration: underline;
+      nav ul li a:hover,
+      nav ul li a:focus {
+        background-color: #c9082a; /* NBA red on hover/focus */
+        color: #fff; /* White text on hover for contrast */
+        transform: translateY(-2px);
+        box-shadow: 0 2px 5px #666;
+      }
+
+      /* Button styles */
+      .button {
+        font-size: 1.2em;
+        padding: 15px 30px;
+        background-color: #c9082a; /* NBA red */
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s, box-shadow 0.3s;
+      }
+
+      .button:hover {
+        background-color: #a3061e; /* Darker shade of red */
+        box-shadow: 0 4px 8px #444;
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 600px) {
+        nav ul li {
+          margin: 10px 5px;
+        }
+
+        nav ul li a {
+          font-size: 1em;
+        }
       }
     </style>
   </head>
+  <img src="static/NBA.png" />
+
   <body>
     <h1>NBA Database Management System</h1>
     <nav>
@@ -58,5 +117,13 @@
         <li><a href="/advanced_queries">Advanced queries</a></li>
       </ul>
     </nav>
+    <button class="button" onclick="showAlert()">Click for Info</button>
+    <script>
+      function showAlert() {
+        alert(
+          "Welcome to the NBA Database Management System. Navigate using the menu to manage data."
+        );
+      }
+    </script>
   </body>
 </html>

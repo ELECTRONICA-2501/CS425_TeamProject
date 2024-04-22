@@ -4,16 +4,7 @@ import mysql.connector
 from flask import Flask, render_template, request, redirect, url_for, flash
 
 
-app = Flask(__name__)
-
-# def create_connection():
-#         connection = mysql.connector.connect(
-#             host="localhost",
-#             user=input("Enter username: "),
-#             password=getpass("Enter password: "),
-#             database="nba_DB_2"
-#         )
-#         return connection
+app = Flask(__name__, static_folder='static')
 
 
 def create_connection():
@@ -64,34 +55,6 @@ def manage_players():
     cursor.close()
     return render_template('players.html', players=players)
 
-
-
-# @app.route('/teams', methods=['GET', 'POST'])
-# def manage_teams():
-#     conn = create_connection()
-#     if request.method == 'POST':
-#         # Handling form submission for adding, updating, and deleting teams
-#         if 'add' in request.form:
-#             team_name = request.form['team_name']
-#             state = request.form['state']
-#             city = request.form['city']
-#             arena = request.form['arena']
-#             cursor = conn.cursor()
-#             cursor.execute(
-#                 "INSERT INTO teams (Team_Name, State, City, Arena) VALUES (%s, %s, %s, %s)", (team_name, state, city, arena))
-#             conn.commit()
-#             cursor.close()
-#         elif 'delete' in request.form:
-#             team_id = request.form['team_id']
-#             cursor = conn.cursor()
-#             cursor.execute("DELETE FROM teams WHERE TeamID = %s", (team_id,))
-#             conn.commit()
-#             cursor.close()
-#     cursor = conn.cursor()
-#     cursor.execute("SELECT TeamID, Team_Name, State, City, Arena FROM teams")
-#     teams = cursor.fetchall()
-#     cursor.close()
-#     return render_template('teams.html', teams=teams)
 
 
 @app.route('/teams', methods=['GET', 'POST'])
@@ -358,48 +321,48 @@ def advanced_queries():
 
 
 """Junction Tables"""
-# @app.route('/plays_for', methods=['GET', 'POST'])
-# def manage_plays_for():
-#     conn = create_connection()
-#     if not conn:
-#         return render_template('error.html')  # Handle the error appropriately
+@app.route('/plays_for', methods=['GET', 'POST'])
+def manage_plays_for():
+    conn = create_connection()
+    if not conn:
+        return render_template('error.html')  # Handle the error appropriately
 
-#     if request.method == 'POST':
-#         player_id = request.form.get('player_id')
-#         team_id = request.form.get('team_id')
-#         start_date = request.form.get('start_date') or None
-#         end_date = request.form.get('end_date') or None
-#         action = request.form.get('action')
+    if request.method == 'POST':
+        player_id = request.form.get('player_id')
+        team_id = request.form.get('team_id')
+        start_date = request.form.get('start_date') or None
+        end_date = request.form.get('end_date') or None
+        action = request.form.get('action')
 
-#         try:
-#             with conn.cursor() as cursor:
-#                 if action == 'Add':
-#                     cursor.execute(
-#                         "INSERT INTO plays_for (PlayerID, TeamID, Start_Date, End_Date) VALUES (%s, %s, %s, %s)",
-#                         (player_id, team_id, start_date, end_date)
-#                     )
-#                 elif action == 'Update':
-#                     cursor.execute(
-#                         "UPDATE plays_for SET Start_Date = %s, End_Date = %s WHERE PlayerID = %s AND TeamID = %s",
-#                         (start_date, end_date, player_id, team_id)
-#                     )
-#                 elif action == 'Delete':
-#                     cursor.execute(
-#                         "DELETE FROM plays_for WHERE PlayerID = %s AND TeamID = %s",
-#                         (player_id, team_id)
-#                     )
-#                 conn.commit()
-#         except Error as e:
-#             flash(f"Database error: {e}", "error")
-#             conn.rollback()
+        try:
+            with conn.cursor() as cursor:
+                if action == 'Add':
+                    cursor.execute(
+                        "INSERT INTO plays_for (PlayerID, TeamID, Start_Date, End_Date) VALUES (%s, %s, %s, %s)",
+                        (player_id, team_id, start_date, end_date)
+                    )
+                elif action == 'Update':
+                    cursor.execute(
+                        "UPDATE plays_for SET Start_Date = %s, End_Date = %s WHERE PlayerID = %s AND TeamID = %s",
+                        (start_date, end_date, player_id, team_id)
+                    )
+                elif action == 'Delete':
+                    cursor.execute(
+                        "DELETE FROM plays_for WHERE PlayerID = %s AND TeamID = %s",
+                        (player_id, team_id)
+                    )
+                conn.commit()
+        except Error as e:
+            flash(f"Database error: {e}", "error")
+            conn.rollback()
 
-#         return redirect(url_for('manage_plays_for'))
+        return redirect(url_for('manage_plays_for'))
 
-#     with conn.cursor(dictionary=True) as cursor:
-#         cursor.execute("SELECT * FROM plays_for")
-#         plays_for = cursor.fetchall()
+    with conn.cursor(dictionary=True) as cursor:
+        cursor.execute("SELECT * FROM plays_for")
+        plays_for = cursor.fetchall()
 
-#     return render_template('plays_for.html', plays_for=plays_for)
+    return render_template('plays_for.html', plays_for=plays_for)
 
 
 
@@ -731,139 +694,4 @@ def top_rebound_players_by_season():
     JOIN seasons s ON g.SeasonID = s.SeasonID 
     GROUP BY s.SeasonID, r.PlayerID;
     """)
-
-
-# if __name__ == "__main__":
-#     list_all_teams_and_arenas()
-#     find_coaches_with_more_than_5_years_experience()
-#     display_players_team_and_position()
-#     seasons_with_game_counts()
-#     top_scoring_player_in_each_game()
-#     list_all_time_stars()
-#     coaches_tenure_at_each_team()
-#     average_points_per_game_for_each_player()
-#     games_where_home_team_won()
-#     players_who_played_for_multiple_teams()
-#     all_time_stars_for_latest_season()
-#     top_5_highest_scoring_games()
-#     seasonal_ranking_of_teams_based_on_wins()
-#     player_performance_improvement_over_seasons()
-#     top_rebound_players_by_season()
-
-""" user-interface """
-
-
-# def manage_players():
-#     while True:
-#         print("\nPlayer Management")
-#         print("1. Add Player")
-#         print("2. List Players")
-#         print("3. Update Player")
-#         print("4. Delete Player")
-#         print("5. Go Back")
-#         choice = input("Select an option: ")
-
-#         if choice == "1":
-#             add_player()
-#         elif choice == "2":
-#             read_players()
-#         elif choice == "3":
-#             update_player()
-#         elif choice == "4":
-#             delete_player()
-#         elif choice == "5":
-#             return
-#         else:
-#             print("Invalid choice. Please try again.")
-
-
-# def manage_teams():
-#     while True:
-#         print("\nTeam Management")
-#         print("1. Add Team")
-#         print("2. List Teams")
-#         print("3. Update Team")
-#         print("4. Delete Team")
-#         print("5. Go Back")
-#         choice = input("Select an option: ")
-
-#         if choice == "1":
-#             add_team()
-#         elif choice == "2":
-#             list_teams()
-#         # Implement update_team() and delete_team() functions similar to players
-#         elif choice == "5":
-#             return
-#         else:
-#             print("Invalid choice. Please try again.")
-
-
-# def manage_seasons():
-#     while True:
-#         print("\nSeason Management")
-#         print("1. Add Season")
-#         print("2. List Seasons")
-#         print("3. Update Season")
-#         print("4. Delete Season")
-#         print("5. Go Back")
-#         choice = input("Select an option: ")
-
-#         if choice == "1":
-#             add_season()
-#         elif choice == "2":
-#             list_seasons()
-#         # Implement update_season() and delete_season() functions similar to players
-#         elif choice == "5":
-#             return
-#         else:
-#             print("Invalid choice. Please try again.")
-
-
-# def manage_games():
-#     while True:
-#         print("\nGame Management")
-#         print("1. Add Game")
-#         print("2. List Games")
-#         print("3. Update Game")
-#         print("4. Delete Game")
-#         print("5. Go Back")
-#         choice = input("Select an option: ")
-
-#         if choice == "1":
-#             add_game()
-#         elif choice == "2":
-#             list_games()
-#         # Implement update_game() and delete_game() functions similar to players
-#         elif choice == "5":
-#             return
-#         else:
-#             print("Invalid choice. Please try again.")
-
-
-# def main():
-#     while True:
-#         print("\nNBA Database Management")
-#         print("1. Manage Players")
-#         print("2. Manage Teams")
-#         print("3. Manage Seasons")
-#         print("4. Manage Games")
-#         print("5. Exit")
-#         choice = input("Enter your choice: ")
-
-#         if choice == "1":
-#             manage_players()
-#         elif choice == "2":
-#             manage_teams()
-#         elif choice == "3":
-#             manage_seasons()
-#         elif choice == "4":
-#             manage_games()
-#         elif choice == "5":
-#             print("Exiting the NBA Database Management System.")
-#             break
-#         else:
-#             print("Invalid choice. Please try again.")
-
-
-# if __name__ == "__main__":
-#     main()
+    
