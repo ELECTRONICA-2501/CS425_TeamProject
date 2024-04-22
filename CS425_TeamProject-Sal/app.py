@@ -4,7 +4,7 @@ import mysql.connector
 from flask import Flask, render_template, request, redirect, url_for, flash
 
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="static")
 
 # def create_connection():
 #         connection = mysql.connector.connect(
