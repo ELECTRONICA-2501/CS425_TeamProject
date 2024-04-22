@@ -1,141 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <title>Manage Coach</title>
     <link rel="stylesheet" href="templates/yerp.css" />
     <style>
-      /* Base styles */
-      body {
-        font-family: "Arial", sans-serif;
-        background-color: #f3f3f3;
-        color: #333;
-        line-height: 1.6;
-        margin: 0;
-        padding: 0;
-      }
+        /* Base styles */
+        body {
+            font-family: "Arial", sans-serif;
+            background-color: #0a2240; /* Deep NBA Blue */
+            color: #fff; /* White text for better contrast */
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
 
-      /* Headings */
-      h2 {
-        font-size: 2em;
-        color: #17408b;
-      }
+        /* Headings */
+        h2, h3 {
+            font-weight: bold;
+            color: #C9082A; /* NBA Red */
+        }
 
-      h3 {
-        font-size: 1.5em;
-        color: #c9082a;
-      }
+        h2 {
+            font-size: 2.5em; /* Slightly larger to make it more prominent */
+        }
 
-      /* Forms */
-      form {
-        margin-bottom: 20px;
-      }
+        h3 {
+            font-size: 2em;
+            margin-top: 40px; /* More space before the section */
+        }
 
-      input[type="text"],
-      input[type="number"] {
-        padding: 10px;
-        margin: 10px 0;
-        border: 1px solid #ddd;
-      }
+        /* Forms */
+        form {
+            background: #ffffff; /* White background for form */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Subtle shadow for depth */
+            color: #333; /* Dark text for readability */
+            margin-bottom: 40px; /* More space below the form */
+        }
 
-      input[type="submit"],
-      button {
-        padding: 10px;
-        margin: 10px 0;
-        border: none;
-        background-color: #d41010;
-        color: white;
-        cursor: pointer;
-      }
+        input[type="text"],
+        input[type="number"],
+        button {
+            width: 100%;
+            padding: 15px; /* More padding for better touch interaction */
+            margin-top: 10px; /* Consistent spacing */
+            border-radius: 4px; /* Rounded corners */
+        }
 
-      input[type="submit"]:hover,
-      button:hover {
-        background-color: #17408b;
-      }
+        input[type="text"],
+        input[type="number"] {
+            border: 1px solid #ddd; /* Subtle border */
+        }
 
-      /* Table */
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-bottom: 20px;
-      }
+        button {
+            background-color: #1d428a; /* Darker NBA Blue */
+            color: #ffffff; /* White text */
+            font-size: 1.1em; /* Larger font size */
+            border: none; /* No border */
+        }
 
-      th {
-        background-color: #17408b;
-        color: white;
-        padding: 10px;
-      }
+        button:hover {
+            background-color: #17408b; /* Hover effect */
+        }
 
-      td {
-        padding: 10px;
-      }
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
 
-      tr:nth-child(even) {
-        background-color: #f2f2f2;
-      }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd; /* Light grey border for readability */
+            text-align: left;
+        }
 
-      tr:hover {
-        background-color: #ddd;
-      }
+        th {
+            background-color: #17408b; /* NBA Blue */
+            color: #ffffff; /* White text */
+        }
 
-      /* Links */
-      a {
-        color: #c9082a;
-        text-decoration: none;
-      }
+        td {
+            background-color: #f2f2f2; /* Light grey background */
+            color: #333; /* Dark grey text for contrast */
+        }
 
-      a:hover {
-        text-decoration: underline;
-      }
+        tr:hover {
+            background-color: #ddd; /* Hover effect */
+        }
+
+        /* Links */
+        a {
+            color: #FFC633; /* Gold color for attention */
+            text-decoration: none;
+            display: block;
+            width: fit-content;
+            margin: 20px auto;
+            font-size: 1.2em;
+        }
+
+        a:hover {
+            text-decoration: underline; /* Standard underline hover effect */
+        }
     </style>
-  </head>
-  <body>
+</head>
+<body>
     <h2>Manage Coach</h2>
     <form action="/coach" method="post">
-      <input type="text" name="coach_name" placeholder="Coach Name" required />
-      <input
-        type="number"
-        name="years_exp"
-        placeholder="Years of Experience"
-        required
-      />
-      <input
-        type="number"
-        name="championships_won"
-        placeholder="Championships Won"
-        required
-      />
-      <input type="hidden" name="action" value="Add" />
-      <button type="submit">Add Coach</button>
+        <input type="text" name="coach_name" placeholder="Coach Name" required />
+        <input type="number" name="years_exp" placeholder="Years of Experience" required />
+        <input type="number" name="championships_won" placeholder="Championships Won" required />
+        <input type="hidden" name="action" value="Add" />
+        <button type="submit">Add Coach</button>
     </form>
 
-    <h3>Current Coach</h3>
+    <h3>Current Coaches</h3>
     <table>
-      <tr>
-        <th>Coach ID</th>
-        <th>Coach Name</th>
-        <th>Years of Experience</th>
-        <th>Championships Won</th>
-        <th>Actions</th>
-      </tr>
-      {% for coach in coach %}
-      <tr>
-        <td>{{ coach.CoachID }}</td>
-        <td>{{ coach.Coach_Name }}</td>
-        <td>{{ coach.YearsExp }}</td>
-        <td>{{ coach.ChampionshipsWon }}</td>
-        <td>
-          <!-- Example for Delete; similarly, you can add Update functionality -->
-          <form action="/coach" method="post">
-            <input type="hidden" name="coach_id" value="{{ coach.CoachID }}" />
-            <input type="hidden" name="action" value="Delete" />
-            <button type="submit">Delete</button>
-          </form>
-        </td>
-      </tr>
-      {% endfor %}
+        <tr>
+            <th>Coach ID</th>
+            <th>Coach Name</th>
+            <th>Years of Experience</th>
+            <th>Championships Won</th>
+            <th>Actions</th>
+        </tr>
+        {% for coach in coach %}
+        <tr>
+            <td>{{ coach.CoachID }}</td>
+            <td>{{ coach.Coach_Name }}</td>
+            <td>{{ coach.YearsExp }}</td>
+            <td>{{ coach.ChampionshipsWon }}</td>
+            <td>
+                <form action="/coach" method="post">
+                    <input type="hidden" name="coach_id" value="{{ coach.CoachID }}" />
+                    <input type="hidden" name="action" value="Delete" />
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
     </table>
 
     <a href="/">Back to Home</a>
-  </body>
+</body>
 </html>

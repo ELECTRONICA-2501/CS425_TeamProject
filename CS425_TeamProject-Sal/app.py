@@ -320,53 +320,51 @@ def manage_records():
     return render_template('records.html', records=records)
 
 """Junction Tables"""
-# @app.route('/plays_for', methods=['GET', 'POST'])
-# def manage_plays_for():
-#     conn = create_connection()
-#     if not conn:
-#         return render_template('error.html')  # Handle the error appropriately
+@app.route('/plays_for', methods=['GET', 'POST'])
+def manage_plays_for():
+     conn = create_connection()
+     if not conn:
+         return render_template('error.html')  # Handle the error appropriately
 
-#     if request.method == 'POST':
-#         player_id = request.form.get('player_id')
-#         team_id = request.form.get('team_id')
-#         start_date = request.form.get('start_date') or None
-#         end_date = request.form.get('end_date') or None
-#         action = request.form.get('action')
+     if request.method == 'POST':
+         player_id = request.form.get('player_id')
+         team_id = request.form.get('team_id')
+         start_date = request.form.get('start_date') or None
+         end_date = request.form.get('end_date') or None
+         action = request.form.get('action')
 
-#         try:
-#             with conn.cursor() as cursor:
-#                 if action == 'Add':
-#                     cursor.execute(
-#                         "INSERT INTO plays_for (PlayerID, TeamID, Start_Date, End_Date) VALUES (%s, %s, %s, %s)",
-#                         (player_id, team_id, start_date, end_date)
-#                     )
-#                 elif action == 'Update':
-#                     cursor.execute(
-#                         "UPDATE plays_for SET Start_Date = %s, End_Date = %s WHERE PlayerID = %s AND TeamID = %s",
-#                         (start_date, end_date, player_id, team_id)
-#                     )
-#                 elif action == 'Delete':
-#                     cursor.execute(
-#                         "DELETE FROM plays_for WHERE PlayerID = %s AND TeamID = %s",
-#                         (player_id, team_id)
-#                     )
-#                 conn.commit()
-#         except Error as e:
-#             flash(f"Database error: {e}", "error")
-#             conn.rollback()
+         try:
+             with conn.cursor() as cursor:
+                 if action == 'Add':
+                     cursor.execute(
+                         "INSERT INTO plays_for (PlayerID, TeamID, Start_Date, End_Date) VALUES (%s, %s, %s, %s)",
+                         (player_id, team_id, start_date, end_date)
+                     )
+                 elif action == 'Update':
+                     cursor.execute(
+                         "UPDATE plays_for SET Start_Date = %s, End_Date = %s WHERE PlayerID = %s AND TeamID = %s",
+                         (start_date, end_date, player_id, team_id)
+                     )
+                 elif action == 'Delete':
+                     cursor.execute(
+                         "DELETE FROM plays_for WHERE PlayerID = %s AND TeamID = %s",
+                         (player_id, team_id)
+                     )
+                 conn.commit()
+         except Error as e:
+             flash(f"Database error: {e}", "error")
+             conn.rollback()
 
-#         return redirect(url_for('manage_plays_for'))
+         return redirect(url_for('manage_plays_for'))
 
-#     with conn.cursor(dictionary=True) as cursor:
-#         cursor.execute("SELECT * FROM plays_for")
-#         plays_for = cursor.fetchall()
+     with conn.cursor(dictionary=True) as cursor:
+         cursor.execute("SELECT * FROM plays_for")
+         plays_for = cursor.fetchall()
 
-#     return render_template('plays_for.html', plays_for=plays_for)
-
-
+     return render_template('plays_for.html', plays_for=plays_for)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+            app.run(debug=True)
 
 
 """ CRUD (Create, Read, Update, Delete) functionalities """
