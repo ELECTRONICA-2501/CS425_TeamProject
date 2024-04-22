@@ -1,38 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Advanced SQL Queries</title>
-</head>
-<body>
-    <h1>Advanced SQL Query Results</h1>
-    <h2>Season Scores Improvement</h2>
-    <table>
+    <style>
+      /* Base styles */
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #1d428a; /* NBA dark blue */
+        color: #ffffff;
+        line-height: 1.6;
+        margin: 0;
+        padding: 20px;
+      }
+
+      /* Container */
+      .container {
+        max-width: 1000px;
+        margin: auto;
+        padding: 20px;
+        background-color: #ffffff;
+        color: #333;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        border-radius: 8px;
+      }
+
+      /* Headings */
+      h1,
+      h2 {
+        color: #c9082a; /* NBA red */
+        text-align: center;
+      }
+      h1 {
+        font-size: 2.4em;
+        margin-bottom: 0.5em;
+      }
+      h2 {
+        font-size: 1.8em;
+        margin-bottom: 0.5em;
+      }
+
+      /* Tables */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: left;
+      }
+
+      th {
+        background-color: #17408b; /* NBA dark blue */
+        color: white;
+      }
+
+      td {
+        background-color: #fff;
+        color: #333;
+      }
+
+      /* Links */
+      a {
+        color: #007bff;
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      ul {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      li {
+        padding: 8px;
+        margin-top: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Advanced SQL Query Results</h1>
+      <h2>Season Scores Improvement</h2>
+      <table>
         <thead>
-            <tr>
-                <th>Player ID</th>
-                <th>Season ID</th>
-                <th>Average Points</th>
-                <th>Previous Season Avg Points</th>
-            </tr>
+          <tr>
+            <th>Player ID</th>
+            <th>Season ID</th>
+            <th>Average Points</th>
+            <th>Previous Season Avg Points</th>
+          </tr>
         </thead>
         <tbody>
-            {% for row in data.season_scores %}
-            <tr>
-                <td>{{ row.PlayerID }}</td>
-                <td>{{ row.SeasonID }}</td>
-                <td>{{ row.AvgPoints }}</td>
-                <td>{{ row.PrevSeasonAvgPoints }}</td>
-            </tr>
-            {% endfor %}
+          {% for row in data.season_scores %}
+          <tr>
+            <td>{{ row.PlayerID }}</td>
+            <td>{{ row.SeasonID }}</td>
+            <td>{{ row.AvgPoints }}</td>
+            <td>{{ row.PrevSeasonAvgPoints }}</td>
+          </tr>
+          {% endfor %}
         </tbody>
-    </table>
-    <h2>Top Performers (Points or Assists)</h2>
-    <ul>
+      </table>
+      <h2>Top Performers (Points or Assists)</h2>
+      <ul>
         {% for player in data.top_performers %}
         <li>Player ID: {{ player.PlayerID }}</li>
         {% endfor %}
-    </ul>
-    <a href="{{ url_for('index') }}">Back to Home</a>
-</body>
+      </ul>
+      <a href="{{ url_for('index') }}">Back to Home</a>
+    </div>
+  </body>
 </html>

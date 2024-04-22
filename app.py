@@ -12,7 +12,7 @@ def create_connection():
         connection = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="Choi7729!?!", #getpass("Enter password: "), 
+            password="ISSA3001k$", #getpass("Enter password: "), 
             database="nba_DB_2"
         )
         return connection
@@ -281,6 +281,49 @@ def manage_records():
         records = cursor.fetchall()
 
     return render_template('records.html', records=records)
+###############new shit
+@app.route('/alltimestars', methods=['GET', 'POST'])
+def managealltimestars():
+    conn = create_connection()
+    if conn.is_connected():
+        if request.method == 'POST':
+            action = request.form.get('action')
+            if action == 'Add':
+                # Convert empty strings to None to allow nulls in the database
+                player_id = request.form.get('player_id') or None
+                coach_id = request.form.get('coach_id') or None
+                season_id = request.form.get('season_id') or None
+                # Insert the data into the allTimeStars table, allowing NULL values
+                with conn.cursor() as cursor:
+                    cursor.execute(
+                        "INSERT INTO allTimeStars (PlayerID, CoachID, SeasonID) VALUES (%s, %s, %s)",
+                        (player_id, coach_id, season_id)
+                    )
+                    conn.commit()
+            elif action == 'Delete':
+                star_id = request.form.get('star_id')
+                with conn.cursor() as cursor:
+                    cursor.execute(
+                        "DELETE FROM allTimeStars WHERE StarID = %s", (star_id,)
+                    )
+                    conn.commit()
+
+            # Redirect to the same page to show the updated list and clear the form
+            return redirect(url_for('manage_all_time_stars'))
+
+        # Retrieve and display all records from allTimeStars
+        with conn.cursor(dictionary=True) as cursor:
+            cursor.execute(
+                "SELECT StarID, PlayerID, CoachID, SeasonID FROM allTimeStars"
+            )
+            all_time_stars = cursor.fetchall()
+
+        # Close the connection after use
+        conn.close()
+
+        return render_template('all_time_stars.html', all_time_stars=all_time_stars)
+    else:
+        return "Error connecting to the database", 500
 
 
 @app.route('/advanced_queries')
