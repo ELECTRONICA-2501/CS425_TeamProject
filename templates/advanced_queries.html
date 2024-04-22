@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Advanced SQL Queries</title>
+</head>
+<body>
+    <h1>Advanced SQL Query Results</h1>
+    <h2>Season Scores Improvement</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Player ID</th>
+                <th>Season ID</th>
+                <th>Average Points</th>
+                <th>Previous Season Avg Points</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in data.season_scores %}
+            <tr>
+                <td>{{ row.PlayerID }}</td>
+                <td>{{ row.SeasonID }}</td>
+                <td>{{ row.AvgPoints }}</td>
+                <td>{{ row.PrevSeasonAvgPoints }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <h2>Top Performers (Points or Assists)</h2>
+    <ul>
+        {% for player in data.top_performers %}
+        <li>Player ID: {{ player.PlayerID }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('index') }}">Back to Home</a>
+</body>
+</html>

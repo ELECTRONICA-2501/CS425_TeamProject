@@ -21,7 +21,7 @@ def create_connection():
         connection = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="ISSA3001k$", #getpass("Enter password: "), 
+            password="Choi7729!?!", #getpass("Enter password: "), 
             database="nba_DB_2"
         )
         return connection
@@ -318,6 +318,44 @@ def manage_records():
         records = cursor.fetchall()
 
     return render_template('records.html', records=records)
+
+
+@app.route('/advanced_queries')
+def advanced_queries():
+    conn = create_connection()
+    if not conn:
+        flash("Failed to connect to database", category='error')
+        return redirect(url_for('index'))
+
+    data = {}
+    with conn.cursor(dictionary=True) as cursor:
+        # Example of a complex query with a subquery and WITH clause
+        cursor.execute("""
+        WITH SeasonScores AS (
+            SELECT r.PlayerID, s.SeasonID, AVG(r.Points) AS AvgPoints
+            FROM records r
+            JOIN games g ON r.GameID = g.GameID
+            JOIN seasons s ON g.SeasonID = s.SeasonID
+            GROUP BY r.PlayerID, s.SeasonID
+        )
+        SELECT PlayerID, SeasonID, AvgPoints,
+               LAG(AvgPoints) OVER (PARTITION BY PlayerID ORDER BY SeasonID) AS PrevSeasonAvgPoints
+        FROM SeasonScores;
+        """)
+        data['season_scores'] = cursor.fetchall()
+
+        # Example of set operations (Union, Intersect, Except)
+        cursor.execute("""
+        (SELECT PlayerID FROM records WHERE Points >= 30)
+        UNION
+        (SELECT PlayerID FROM records WHERE Assists >= 10);
+        """)
+        data['top_performers'] = cursor.fetchall()
+
+    conn.close()
+    return render_template('advanced_queries.html', data=data)
+
+
 
 """Junction Tables"""
 # @app.route('/plays_for', methods=['GET', 'POST'])
