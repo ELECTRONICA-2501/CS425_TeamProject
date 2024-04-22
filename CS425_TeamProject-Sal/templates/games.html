@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>NBA DB - Games</title>
+    <link rel="stylesheet" href="templates/yerp.css" />
+    <style>
+      /* Base styles */
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f3f3f3;
+        color: #333;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Headings */
+      h1 {
+        font-size: 2.5em;
+        color: #17408b;
+        margin-bottom: 20px;
+      }
+
+      /* Forms */
+      form {
+        margin-bottom: 20px;
+      }
+
+      input[type="date"],
+      input[type="number"] {
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ddd;
+        width: 200px;
+      }
+
+      input[type="submit"],
+      button {
+        padding: 10px 20px;
+        margin: 10px 0;
+        border: none;
+        background-color: #d41010;
+        color: white;
+        cursor: pointer;
+      }
+
+      input[type="submit"]:hover,
+      button:hover {
+        background-color: #17408b;
+      }
+
+      /* Lists */
+      ul {
+        padding-left: 20px;
+      }
+
+      li {
+        margin-bottom: 10px;
+      }
+
+      /* Links */
+      a {
+        color: #c9082a;
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Games</h1>
+    <form action="/games" method="post">
+      <input type="date" name="game_date" required />
+      <input type="number" name="team1_id" placeholder="Team 1 ID" required />
+      <input type="number" name="team2_id" placeholder="Team 2 ID" required />
+      <input
+        type="number"
+        name="team1_score"
+        placeholder="Team 1 Score"
+        required
+      />
+      <input
+        type="number"
+        name="team2_score"
+        placeholder="Team 2 Score"
+        required
+      />
+      <input
+        type="number"
+        name="home_team_id"
+        placeholder="Home Team ID"
+        required
+      />
+      <button type="submit">Add Game</button>
+    </form>
+    <ul>
+      {% for game in games %}
+      <li>
+        {{ game['GameDate'] }}: {{ game['Team1ID'] }} vs {{ game['Team2ID'] }} -
+        Home Team: {{ game['HomeTeamID'] }}
+      </li>
+      {% endfor %}
+    </ul>
+    <a href="/">Back to Home</a>
+  </body>
+</html>

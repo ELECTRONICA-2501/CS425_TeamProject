@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Manage Seasons</title>
+    <link rel="stylesheet" href="templates/yerp.css" />
+    <style>
+      /* Base styles */
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f3f3f3;
+        color: #333;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Headings */
+      h2 {
+        font-size: 2em;
+        color: #17408b;
+        margin-bottom: 20px;
+      }
+
+      /* Forms */
+      form {
+        margin-bottom: 20px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 10px;
+      }
+
+      input[type="date"],
+      button[type="submit"] {
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+      }
+
+      button[type="submit"] {
+        background-color: #d41010;
+        color: white;
+        cursor: pointer;
+        border: none;
+      }
+
+      button[type="submit"]:hover {
+        background-color: #17408b;
+      }
+
+      /* Seasons list */
+      .season-item {
+        margin-bottom: 10px;
+      }
+
+      /* Links */
+      a {
+        color: #c9082a;
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h2>Add a New Season</h2>
+    <form method="POST">
+      <input type="hidden" name="action" value="Add" />
+      <label for="start_date">Start Date:</label>
+      <input type="date" id="start_date" name="start_date" required />
+
+      <label for="end_date">End Date:</label>
+      <input type="date" id="end_date" name="end_date" required />
+
+      <button type="submit">Add Season</button>
+    </form>
+
+    <h2>Season List</h2>
+    {% for season in seasons %}
+    <div class="season-item">
+      <span>{{ season['Start_Date'] }} to {{ season['End_Date'] }}</span>
+      <form method="POST" style="display: inline">
+        <input type="hidden" name="action" value="Delete" />
+        <input
+          type="hidden"
+          name="season_id"
+          value="{{ season['SeasonID'] }}"
+        />
+        <button type="submit">Delete</button>
+      </form>
+      <form method="POST" style="display: inline">
+        <input type="hidden" name="action" value="Update" />
+        <input
+          type="hidden"
+          name="season_id"
+          value="{{ season['SeasonID'] }}"
+        />
+        <input type="date" name="update_start_date" required />
+        <input type="date" name="update_end_date" required />
+        <button type="submit">Update</button>
+      </form>
+    </div>
+    {% else %}
+    <p>No seasons available.</p>
+    {% endfor %}
+
+    <a href="/">Back to Home</a>
+  </body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Manage Players</title>
+    <link rel="stylesheet" href="templates/yerp.css" />
+    <style>
+      /* Base styles */
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f3f3f3;
+        color: #333;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Headings */
+      h1 {
+        font-size: 2.5em;
+        color: #17408b;
+        margin-bottom: 20px;
+      }
+
+      /* Forms */
+      form {
+        margin-bottom: 20px;
+      }
+
+      input[type="text"],
+      input[type="submit"] {
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ddd;
+      }
+
+      input[type="submit"] {
+        background-color: #d41010;
+        color: white;
+        cursor: pointer;
+        border: none;
+      }
+
+      input[type="submit"]:hover {
+        background-color: #17408b;
+      }
+
+      /* Tables */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+      }
+
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 10px;
+      }
+
+      th {
+        background-color: #17408b;
+        color: white;
+      }
+
+      /* Links */
+      a {
+        color: #c9082a;
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Players</h1>
+    <form method="post">
+      <!-- Add Player Form -->
+      Name: <input type="text" name="name" /> Team ID:
+      <input type="text" name="team_id" /> Position:
+      <input type="text" name="position" />
+      <input type="submit" name="add" value="Add Player" />
+    </form>
+    <table>
+      <tr>
+        <th>Player ID</th>
+        <th>Name</th>
+        <th>Team ID</th>
+        <th>Position</th>
+      </tr>
+      {% for player in players %}
+      <tr>
+        <td>{{ player[0] }}</td>
+        <td>{{ player[1] }}</td>
+        <td>{{ player[2] }}</td>
+        <td>{{ player[3] }}</td>
+        <td>
+          <form method="post">
+            <input type="hidden" name="player_id" value="{{ player[0] }}" />
+            <input type="submit" name="delete" value="Delete" />
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+    <a href="/">Back to Home</a>
+  </body>
+</html>

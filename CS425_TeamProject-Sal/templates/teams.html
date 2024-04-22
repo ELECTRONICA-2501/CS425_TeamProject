@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Manage Teams</title>
+    <link rel="stylesheet" href="templates/yerp.css" />
+    <style>
+      /* Base styles */
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f3f3f3;
+        color: #333;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+      }
+
+      h1,
+      h2 {
+        font-weight: bold;
+        color: #17408b;
+        margin-bottom: 20px;
+      }
+
+      form {
+        margin-bottom: 20px;
+      }
+
+      input[type="text"],
+      input[type="submit"],
+      input[type="button"] {
+        padding: 10px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+      }
+
+      input[type="submit"] {
+        background-color: #d41010;
+        color: white;
+        cursor: pointer;
+        border: none;
+      }
+
+      input[type="submit"]:hover {
+        background-color: #17408b;
+      }
+
+      input[type="button"] {
+        background-color: #ddd;
+        color: #333;
+      }
+
+      input[type="button"]:hover {
+        background-color: #ccc;
+      }
+
+      ul {
+        list-style: none;
+        padding-left: 0;
+      }
+
+      li {
+        margin-bottom: 10px;
+      }
+
+      button {
+        padding: 8px;
+        background-color: #17408b;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #0d2b5a;
+      }
+
+      /* Links */
+      a {
+        color: #c9082a;
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Manage Teams</h1>
+
+    <form id="teamForm" method="POST">
+      <input type="hidden" id="team_id" name="team_id" />
+      <input
+        type="text"
+        id="team_name"
+        name="team_name"
+        placeholder="Team Name"
+        required
+      />
+      <input type="text" id="state" name="state" placeholder="State" required />
+      <input type="text" id="city" name="city" placeholder="City" required />
+      <input type="text" id="arena" name="arena" placeholder="Arena" required />
+      <input type="submit" id="teamFormButton" name="action" value="Add" />
+      <input type="button" onclick="clearForm()" value="Clear" />
+    </form>
+
+    <h2>Teams</h2>
+    <ul>
+      {% for team in teams %}
+      <li>
+        {{ team.TeamID }} - {{ team.Team_Name }}, {{ team.State }}, {{ team.City
+        }}, {{ team.Arena }}
+        <button
+          onclick="setUpdate('{{ team.TeamID }}', '{{ team.Team_Name }}', '{{ team.State }}', '{{ team.City }}', '{{ team.Arena }}')"
+        >
+          Edit
+        </button>
+        <form method="POST" style="display: inline">
+          <input type="hidden" name="team_id" value="{{ team.TeamID }}" />
+          <input type="submit" name="action" value="Delete" />
+        </form>
+      </li>
+      {% endfor %}
+      <!-- Back to Home Link -->
+      <li><a href="/">Back to Home</a></li>
+    </ul>
+  </body>
+</html>

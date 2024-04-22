@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Manage Coach</title>
+    <link rel="stylesheet" href="templates/yerp.css" />
+    <style>
+      /* Base styles */
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f3f3f3;
+        color: #333;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Headings */
+      h2 {
+        font-size: 2em;
+        color: #17408b;
+      }
+
+      h3 {
+        font-size: 1.5em;
+        color: #c9082a;
+      }
+
+      /* Forms */
+      form {
+        margin-bottom: 20px;
+      }
+
+      input[type="text"],
+      input[type="number"] {
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ddd;
+      }
+
+      input[type="submit"],
+      button {
+        padding: 10px;
+        margin: 10px 0;
+        border: none;
+        background-color: #d41010;
+        color: white;
+        cursor: pointer;
+      }
+
+      input[type="submit"]:hover,
+      button:hover {
+        background-color: #17408b;
+      }
+
+      /* Table */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+      }
+
+      th {
+        background-color: #17408b;
+        color: white;
+        padding: 10px;
+      }
+
+      td {
+        padding: 10px;
+      }
+
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+
+      tr:hover {
+        background-color: #ddd;
+      }
+
+      /* Links */
+      a {
+        color: #c9082a;
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Manage Coach</h2>
+    <form action="/coach" method="post">
+      <input type="text" name="coach_name" placeholder="Coach Name" required />
+      <input
+        type="number"
+        name="years_exp"
+        placeholder="Years of Experience"
+        required
+      />
+      <input
+        type="number"
+        name="championships_won"
+        placeholder="Championships Won"
+        required
+      />
+      <input type="hidden" name="action" value="Add" />
+      <button type="submit">Add Coach</button>
+    </form>
+
+    <h3>Current Coach</h3>
+    <table>
+      <tr>
+        <th>Coach ID</th>
+        <th>Coach Name</th>
+        <th>Years of Experience</th>
+        <th>Championships Won</th>
+        <th>Actions</th>
+      </tr>
+      {% for coach in coach %}
+      <tr>
+        <td>{{ coach.CoachID }}</td>
+        <td>{{ coach.Coach_Name }}</td>
+        <td>{{ coach.YearsExp }}</td>
+        <td>{{ coach.ChampionshipsWon }}</td>
+        <td>
+          <!-- Example for Delete; similarly, you can add Update functionality -->
+          <form action="/coach" method="post">
+            <input type="hidden" name="coach_id" value="{{ coach.CoachID }}" />
+            <input type="hidden" name="action" value="Delete" />
+            <button type="submit">Delete</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+
+    <a href="/">Back to Home</a>
+  </body>
+</html>
