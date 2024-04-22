@@ -1,109 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <title>NBA DB - Games</title>
     <link rel="stylesheet" href="templates/yerp.css" />
     <style>
-      /* Base styles */
-      body {
-        font-family: "Arial", sans-serif;
-        background-color: #f3f3f3;
-        color: #333;
-        line-height: 1.6;
-        margin: 0;
-        padding: 0;
-      }
+        /* Base styles */
+        body {
+            font-family: "Arial", sans-serif;
+            background-color: #0a2240; /* Deep NBA Blue */
+            color: #fff;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
 
-      /* Headings */
-      h1 {
-        font-size: 2.5em;
-        color: #17408b;
-        margin-bottom: 20px;
-      }
+        /* Headings */
+        h1 {
+            font-size: 2.5em;
+            color: #C9082A; /* NBA Red */
+            margin-bottom: 20px;
+            text-align: center;
+        }
 
-      /* Forms */
-      form {
-        margin-bottom: 20px;
-      }
+        /* Forms */
+        form {
+            background: #ffffff; /* White background for contrast */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Subtle shadow for depth */
+            color: #333; /* Dark text for readability */
+            margin-bottom: 40px; /* More space below the form */
+            max-width: 600px; /* Constrain form width for aesthetics */
+            margin-left: auto;
+            margin-right: auto;
+        }
 
-      input[type="date"],
-      input[type="number"] {
-        padding: 10px;
-        margin: 10px 0;
-        border: 1px solid #ddd;
-        width: 200px;
-      }
+        input[type="date"],
+        input[type="number"] {
+            width: calc(50% - 22px); /* Adjust width, accounting for padding */
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px; /* Rounded corners for inputs */
+            border: 1px solid #ddd; /* Subtle border */
+        }
 
-      input[type="submit"],
-      button {
-        padding: 10px 20px;
-        margin: 10px 0;
-        border: none;
-        background-color: #d41010;
-        color: white;
-        cursor: pointer;
-      }
+        input[type="submit"],
+        button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(to right, #C9082A, #17408b); /* Gradient from red to blue */
+            color: white;
+            font-size: 1.1em; /* Larger font size */
+            border: none; /* No border */
+            border-radius: 5px; /* Rounded corners for button */
+            cursor: pointer;
+            transition: background 0.3s ease; /* Smooth transition for hover */
+        }
 
-      input[type="submit"]:hover,
-      button:hover {
-        background-color: #17408b;
-      }
+        input[type="submit"]:hover,
+        button:hover {
+            background: linear-gradient(to right, #17408b, #C9082A); /* Reverse gradient on hover */
+        }
 
-      /* Lists */
-      ul {
-        padding-left: 20px;
-      }
+        /* Lists */
+        ul {
+            padding-left: 20px;
+        }
 
-      li {
-        margin-bottom: 10px;
-      }
+        li {
+            background: #000000; /* Light background for list items */
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px; /* Rounded corners for list items */
+        }
 
-      /* Links */
-      a {
-        color: #c9082a;
-        text-decoration: none;
-      }
+        /* Links */
+        a {
+            color: #FFC633; /* NBA gold, for attention */
+            text-decoration: none;
+            display: block;
+            width: fit-content;
+            margin: 20px auto;
+            font-size: 1.2em;
+        }
 
-      a:hover {
-        text-decoration: underline;
-      }
+        a:hover {
+            text-decoration: underline;
+        }
     </style>
-  </head>
-  <body>
-    <h1>Games</h1>
+</head>
+<body>
+    <h1>NBA DB - Games</h1>
     <form action="/games" method="post">
-      <input type="date" name="game_date" required />
-      <input type="number" name="team1_id" placeholder="Team 1 ID" required />
-      <input type="number" name="team2_id" placeholder="Team 2 ID" required />
-      <input
-        type="number"
-        name="team1_score"
-        placeholder="Team 1 Score"
-        required
-      />
-      <input
-        type="number"
-        name="team2_score"
-        placeholder="Team 2 Score"
-        required
-      />
-      <input
-        type="number"
-        name="home_team_id"
-        placeholder="Home Team ID"
-        required
-      />
-      <button type="submit">Add Game</button>
+        <input type="date" name="game_date" required />
+        <input type="number" name="team1_id" placeholder="Team 1 ID" required />
+        <input type="number" name="team2_id" placeholder="Team 2 ID" required />
+        <input type="number" name="team1_score" placeholder="Team 1 Score" required />
+        <input type="number" name="team2_score" placeholder="Team 2 Score" required />
+        <input type="number" name="home_team_id" placeholder="Home Team ID" required />
+        <button type="submit">Add Game</button>
     </form>
     <ul>
-      {% for game in games %}
-      <li>
-        {{ game['GameDate'] }}: {{ game['Team1ID'] }} vs {{ game['Team2ID'] }} -
-        Home Team: {{ game['HomeTeamID'] }}
-      </li>
-      {% endfor %}
+        {% for game in games %}
+        <li>
+            {{ game['GameDate'] }}: {{ game['Team1ID'] }} vs {{ game['Team2ID'] }} -
+            Home Team: {{ game['HomeTeamID'] }}
+        </li>
+        {% endfor %}
     </ul>
     <a href="/">Back to Home</a>
-  </body>
+</body>
 </html>

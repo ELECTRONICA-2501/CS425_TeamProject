@@ -1,87 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <title>Manage Records</title>
     <link rel="stylesheet" href="templates/yerp.css" />
     <style>
-      /* Base styles */
-      body {
-        font-family: "Arial", sans-serif;
-        background-color: #f3f3f3;
-        color: #333;
-        line-height: 1.6;
-        margin: 0;
-        padding: 0;
-      }
+        /* Base styles */
+        body {
+            font-family: "Arial", sans-serif;
+            background-color: #0e2240; /* Dark NBA Blue */
+            color: #ffffff; /* White text for better readability */
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
 
-      /* Headings */
-      h2 {
-        font-size: 2em;
-        color: #17408b;
-        margin-bottom: 20px;
-      }
+        /* Headings */
+        h2, h3 {
+            color: #FFC633; /* NBA Gold */
+        }
 
-      h3 {
-        font-size: 1.5em;
-        color: #c9082a;
-        margin-top: 30px;
-      }
+        h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
 
-      /* Forms */
-      form {
-        margin-bottom: 20px;
-      }
+        h3 {
+            font-size: 1.5em;
+            margin-top: 30px;
+        }
 
-      input[type="number"],
-      input[type="submit"] {
-        padding: 10px;
-        margin: 10px 0;
-        border: 1px solid #ddd;
-      }
+        /* Forms */
+        form {
+            margin-bottom: 20px;
+            background-color: #ffffff; /* White background for forms */
+            padding: 10px;
+            border-radius: 5px; /* Rounded corners */
+            color: #333; /* Dark text for readability */
+        }
 
-      input[type="submit"] {
-        background-color: #d41010;
-        color: white;
-        cursor: pointer;
-        border: none;
-      }
+        input[type="number"],
+        input[type="submit"], 
+        button {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px; /* Rounded corners */
+            border: 1px solid #ddd;
+            width: 100%; /* Full width */
+        }
 
-      input[type="submit"]:hover {
-        background-color: #17408b;
-      }
+        input[type="number"] {
+            background-color: #f3f3f3; /* Light grey background */
+        }
 
-      /* Tables */
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-bottom: 20px;
-      }
+        input[type="submit"], button {
+            background-color: #c9082a; /* Bright NBA Red */
+            color: white;
+            border: none;
+        }
 
-      th,
-      td {
-        border: 1px solid #ddd;
-        padding: 10px;
-      }
+        input[type="submit"]:hover, button:hover {
+            background-color: #17408b; /* NBA Dark Blue */
+        }
 
-      th {
-        background-color: #17408b;
-        color: white;
-      }
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
 
-      /* Links */
-      a {
-        color: #c9082a;
-        text-decoration: none;
-      }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
 
-      a:hover {
-        text-decoration: underline;
-      }
+        th {
+            background-color: #17408b; /* NBA Dark Blue */
+            color: white;
+        }
+
+        td {
+            background-color: #f2f2f2; /* Light grey background */
+            color: #333; /* Dark grey text */
+        }
+
+        /* Links */
+        a {
+            color: #FFC633; /* NBA Gold */
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            color: #c9082a; /* NBA Red */
+        }
     </style>
-  </head>
-
-  <body>
+</head>
+<body>
     <h2>Manage Records</h2>
     <form action="/records" method="post">
       <input type="number" name="player_id" placeholder="Player ID" required />
@@ -116,13 +132,8 @@
         <td>{{ record.Assists }}</td>
         <td>{{ record.Blocks }}</td>
         <td>
-          <!-- Example for Delete; you can similarly add Update functionality -->
           <form action="/records" method="post">
-            <input
-              type="hidden"
-              name="record_id"
-              value="{{ record.RecordID }}"
-            />
+            <input type="hidden" name="record_id" value="{{ record.RecordID }}" />
             <input type="hidden" name="action" value="Delete" />
             <button type="submit">Delete</button>
           </form>
@@ -132,5 +143,5 @@
     </table>
 
     <a href="/">Back to Home</a>
-  </body>
+</body>
 </html>

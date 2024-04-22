@@ -9,7 +9,7 @@
         body {
             font-family: "Arial", sans-serif;
             background-color: #0a2240; /* Deep NBA Blue */
-            color: #fff; /* White text for better contrast */
+            color: #fff;
             line-height: 1.6;
             margin: 0;
             padding: 20px;
@@ -22,47 +22,50 @@
         }
 
         h2 {
-            font-size: 2.5em; /* Slightly larger to make it more prominent */
+            font-size: 2.5em;
         }
 
         h3 {
             font-size: 2em;
-            margin-top: 40px; /* More space before the section */
+            margin-top: 40px;
         }
 
         /* Forms */
         form {
-            background: #ffffff; /* White background for form */
+            background: #ffffff; 
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Subtle shadow for depth */
-            color: #333; /* Dark text for readability */
-            margin-bottom: 40px; /* More space below the form */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2); 
+            color: #333;
+            margin-bottom: 40px;
         }
 
         input[type="text"],
         input[type="number"],
         button {
             width: 100%;
-            padding: 15px; /* More padding for better touch interaction */
-            margin-top: 10px; /* Consistent spacing */
-            border-radius: 4px; /* Rounded corners */
+            padding: 15px;
+            margin-top: 10px;
+            border-radius: 5px;
         }
 
         input[type="text"],
         input[type="number"] {
-            border: 1px solid #ddd; /* Subtle border */
+            border: 1px solid #ddd;
+            background-color: #f2f2f2;
+            color: #333;
         }
 
         button {
-            background-color: #1d428a; /* Darker NBA Blue */
-            color: #ffffff; /* White text */
-            font-size: 1.1em; /* Larger font size */
-            border: none; /* No border */
+            background: linear-gradient(to right, #C9082A, #17408b); /* Gradient from NBA Red to NBA Blue */
+            color: white;
+            border: none;
+            transition: background 0.3s ease;
         }
 
         button:hover {
-            background-color: #17408b; /* Hover effect */
+            background: linear-gradient(to right, #17408b, #C9082A); /* Reverse gradient on hover */
+            cursor: pointer;
         }
 
         /* Table */
@@ -73,27 +76,27 @@
 
         th, td {
             padding: 12px;
-            border: 1px solid #ddd; /* Light grey border for readability */
+            border: 1px solid #ddd;
             text-align: left;
         }
 
         th {
-            background-color: #17408b; /* NBA Blue */
-            color: #ffffff; /* White text */
+            background-color: #17408b; 
+            color: white;
         }
 
         td {
-            background-color: #f2f2f2; /* Light grey background */
-            color: #333; /* Dark grey text for contrast */
+            background-color: #f2f2f2;
+            color: #333;
         }
 
         tr:hover {
-            background-color: #ddd; /* Hover effect */
+            background-color: #ddd;
         }
 
         /* Links */
         a {
-            color: #FFC633; /* Gold color for attention */
+            color: #FFC633; /* Gold color */
             text-decoration: none;
             display: block;
             width: fit-content;
@@ -102,7 +105,7 @@
         }
 
         a:hover {
-            text-decoration: underline; /* Standard underline hover effect */
+            text-decoration: underline;
         }
     </style>
 </head>

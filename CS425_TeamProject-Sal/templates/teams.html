@@ -1,105 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <title>Manage Teams</title>
     <link rel="stylesheet" href="templates/yerp.css" />
     <style>
-      /* Base styles */
-      body {
-        font-family: "Arial", sans-serif;
-        background-color: #f3f3f3;
-        color: #333;
-        line-height: 1.6;
-        margin: 0;
-        padding: 0;
-      }
+        /* Base styles */
+        body {
+            font-family: "Arial", sans-serif;
+            background-color: #0e2240; /* Dark NBA Blue */
+            color: #ffffff; /* White text for better readability */
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
 
-      h1,
-      h2 {
-        font-weight: bold;
-        color: #17408b;
-        margin-bottom: 20px;
-      }
+        /* Headings */
+        h1, h2 {
+            font-weight: bold;
+            color: #FFC633; /* NBA Gold */
+            margin-bottom: 20px;
+        }
 
-      form {
-        margin-bottom: 20px;
-      }
+        /* Forms */
+        form {
+            margin-bottom: 20px;
+        }
 
-      input[type="text"],
-      input[type="submit"],
-      input[type="button"] {
-        padding: 10px;
-        margin-right: 10px;
-        margin-bottom: 10px;
-        border: 1px solid #ddd;
-      }
+        input[type="text"],
+        input[type="submit"],
+        input[type="button"] {
+            padding: 10px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 4px;
+        }
 
-      input[type="submit"] {
-        background-color: #d41010;
-        color: white;
-        cursor: pointer;
-        border: none;
-      }
+        input[type="text"] {
+            background-color: #f3f3f3; /* Light grey background */
+            color: #333; /* Text color */
+        }
 
-      input[type="submit"]:hover {
-        background-color: #17408b;
-      }
+        input[type="submit"],
+        input[type="button"] {
+            background-color: #d41010; /* NBA Red */
+            color: white;
+            cursor: pointer;
+        }
 
-      input[type="button"] {
-        background-color: #ddd;
-        color: #333;
-      }
+        input[type="submit"]:hover,
+        input[type="button"]:hover {
+            background-color: #17408b; /* NBA Dark Blue */
+        }
 
-      input[type="button"]:hover {
-        background-color: #ccc;
-      }
+        /* Team list */
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
 
-      ul {
-        list-style: none;
-        padding-left: 0;
-      }
+        li {
+            margin-bottom: 10px;
+            background-color: #1d428a; /* Slightly lighter NBA blue for list items */
+            padding: 8px;
+            border-radius: 4px;
+        }
 
-      li {
-        margin-bottom: 10px;
-      }
+        button {
+            background-color: #FFC633; /* NBA Gold */
+            color: #0e2240; /* Dark blue text */
+            border: none;
+            cursor: pointer;
+        }
 
-      button {
-        padding: 8px;
-        background-color: #17408b;
-        color: white;
-        border: none;
-        cursor: pointer;
-      }
+        button:hover {
+            background-color: #ffc107; /* Lighter NBA Gold */
+        }
 
-      button:hover {
-        background-color: #0d2b5a;
-      }
+        /* Links */
+        a {
+            color: #FFC633; /* NBA Gold */
+            text-decoration: none;
+        }
 
-      /* Links */
-      a {
-        color: #c9082a;
-        text-decoration: none;
-      }
-
-      a:hover {
-        text-decoration: underline;
-      }
+        a:hover {
+            text-decoration: underline;
+            color: #c9082a; /* NBA Red */
+        }
     </style>
-  </head>
-
-  <body>
+</head>
+<body>
     <h1>Manage Teams</h1>
-
     <form id="teamForm" method="POST">
       <input type="hidden" id="team_id" name="team_id" />
-      <input
-        type="text"
-        id="team_name"
-        name="team_name"
-        placeholder="Team Name"
-        required
-      />
+      <input type="text" id="team_name" name="team_name" placeholder="Team Name" required />
       <input type="text" id="state" name="state" placeholder="State" required />
       <input type="text" id="city" name="city" placeholder="City" required />
       <input type="text" id="arena" name="arena" placeholder="Arena" required />
@@ -111,11 +106,8 @@
     <ul>
       {% for team in teams %}
       <li>
-        {{ team.TeamID }} - {{ team.Team_Name }}, {{ team.State }}, {{ team.City
-        }}, {{ team.Arena }}
-        <button
-          onclick="setUpdate('{{ team.TeamID }}', '{{ team.Team_Name }}', '{{ team.State }}', '{{ team.City }}', '{{ team.Arena }}')"
-        >
+        {{ team.TeamID }} - {{ team.Team_Name }}, {{ team.State }}, {{ team.City }}, {{ team.Arena }}
+        <button onclick="setUpdate('{{ team.TeamID }}', '{{ team.Team_Name }}', '{{ team.State }}', '{{ team.City }}', '{{ team.Arena }}')">
           Edit
         </button>
         <form method="POST" style="display: inline">
