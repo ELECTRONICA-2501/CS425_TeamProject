@@ -1,114 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <title>Plays For Management</title>
     <link rel="stylesheet" href="templates/yerp.css" />
     <style>
-        /* Base styles */
-        body {
-            font-family: "Arial", sans-serif;
-            background-color: #0a2240; /* Deep NBA Blue */
-            color: #fff;
-            line-height: 1.6;
-            margin: 0;
-            padding: 20px;
-        }
+      /* Base styles */
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #0a2240; /* Deep NBA Blue */
+        color: #fff;
+        line-height: 1.6;
+        margin: 0;
+        padding: 20px;
+      }
 
-        /* Headings */
-        h1 {
-            font-size: 2.5em;
-            color: #C9082A; /* NBA Red */
-            margin-bottom: 20px;
-            text-align: center;
-        }
+      /* Headings */
+      h1 {
+        font-size: 2.5em;
+        color: #c9082a; /* NBA Red */
+        margin-bottom: 20px;
+        text-align: center;
+      }
 
-        /* Alerts */
-        .alert {
-            padding: 20px;
-            background-color: #d41010; /* Bright NBA Red */
-            color: white;
-            margin-bottom: 20px;
-            border-radius: 5px; /* Rounded corners for alerts */
-        }
+      /* Alerts */
+      .alert {
+        padding: 20px;
+        background-color: #d41010; /* Bright NBA Red */
+        color: white;
+        margin-bottom: 20px;
+        border-radius: 5px; /* Rounded corners for alerts */
+      }
 
-        /* Forms */
-        form {
-            margin-bottom: 20px;
-            background: #ffffff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            color: #333;
-        }
+      /* Forms */
+      form {
+        margin-bottom: 20px;
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        color: #333;
+      }
 
-        input[type="number"],
-        input[type="date"],
-        input[type="submit"] {
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 5px;
-            border: 1px solid #ddd;
-            width: 100%;
-        }
+      input[type="number"],
+      input[type="date"],
+      input[type="submit"] {
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+        width: 100%;
+      }
 
-        input[type="submit"] {
-          background: linear-gradient(to right, #C9082A, #17408b); /* Gradient from red to blue */
-          color: white;
-            cursor: pointer;
-            border: none;
-            transition: background-color 0.3s ease;
-        }
+      input[type="submit"] {
+        background: linear-gradient(
+          to right,
+          #c9082a,
+          #17408b
+        ); /* Gradient from red to blue */
+        color: white;
+        cursor: pointer;
+        border: none;
+        transition: background-color 0.3s ease;
+      }
 
-        input[type="submit"]:hover {
-            background: linear-gradient(to right, #C9082A, #17408b); /* Gradient from red to blue */
-        }
+      input[type="submit"]:hover {
+        background: linear-gradient(
+          to right,
+          #c9082a,
+          #17408b
+        ); /* Gradient from red to blue */
+      }
 
-        /* Tables */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-        }
+      /* Tables */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+      }
 
-        th, td {
-            padding: 15px;
-            border: 1px solid #ddd;
-            text-align: left;
-        }
+      th,
+      td {
+        padding: 15px;
+        border: 1px solid #ddd;
+        text-align: left;
+      }
 
-        th {
-            background-color: #17408b; /* NBA Dark Blue */
-            color: white;
-        }
+      th {
+        background-color: #17408b; /* NBA Dark Blue */
+        color: white;
+      }
 
-        td {
-            background-color: #f2f2f2;
-            color: #333;
-        }
+      td {
+        background-color: #f2f2f2;
+        color: #333;
+      }
 
-        tr:hover {
-            background-color: #ddd; /* Lighter grey on hover */
-            transform: scale(1.01); /* Slight scale on hover for effect */
-            transition: transform 0.3s ease, background-color 0.3s ease;
-        }
+      tr:hover {
+        background-color: #ddd; /* Lighter grey on hover */
+        transform: scale(1.01); /* Slight scale on hover for effect */
+        transition: transform 0.3s ease, background-color 0.3s ease;
+      }
 
-        /* Links */
-        a {
-            color: #FFC633; /* NBA Gold */
-            text-decoration: none;
-            display: block;
-            width: fit-content;
-            margin: 20px auto;
-            font-size: 1.2em;
-        }
+      /* Links */
+      a {
+        color: #ffc633; /* NBA Gold */
+        text-decoration: none;
+        display: block;
+        width: fit-content;
+        margin: 20px auto;
+        font-size: 1.2em;
+      }
 
-        a:hover {
-            text-decoration: underline;
-        }
+      a:hover {
+        text-decoration: underline;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Plays For Management</h1>
     <!-- Flash messages for errors -->
     {% for message in get_flashed_messages(category_filter=["error"]) %}
@@ -152,5 +161,5 @@
     </table>
 
     <a href="{{ url_for('index') }}">Back to Home</a>
-</body>
+  </body>
 </html>

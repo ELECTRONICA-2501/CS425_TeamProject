@@ -6,7 +6,7 @@
     <style>
       /* Base styles */
       body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
         background-color: #002556fb; /* NBA deep blue background */
         color: #fff; /* Adjusting text color to white for contrast */
         line-height: 1.6;
@@ -29,7 +29,12 @@
 
       /* Navigation */
       nav {
-        background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white for legibility */
+        background-color: rgba(
+          255,
+          255,
+          255,
+          0.8
+        ); /* Semi-transparent white for legibility */
         color: #004aad; /* Text color back to blue for contrast */
         border-radius: 10px;
         padding: 20px;
@@ -58,7 +63,8 @@
         transition: background-color 0.3s, transform 0.3s;
       }
 
-      nav ul li a:hover, nav ul li a:focus {
+      nav ul li a:hover,
+      nav ul li a:focus {
         background-color: #c9082a; /* NBA red on hover/focus */
         color: #fff; /* White text on hover for contrast */
         transform: translateY(-2px);
@@ -94,9 +100,8 @@
       }
     </style>
   </head>
-  <img src="76ers.png"> 
-  
-  
+  <img src="/static/NBA_Logo1.png" />
+
   <body>
     <h1>NBA Database Management System</h1>
     <nav>
@@ -109,12 +114,15 @@
         <li><a href="/coach">Manage Coaches</a></li>
         <li><a href="/records">Manage Records</a></li>
         <li><a href="/plays_for">Plays For</a></li>
+        <li><a href="/advanced_queries">Advanced queries</a></li>
       </ul>
     </nav>
     <button class="button" onclick="showAlert()">Click for Info</button>
     <script>
       function showAlert() {
-        alert('Welcome to the NBA Database Management System. Navigate using the menu to manage data.');
+        alert(
+          "Welcome to the NBA Database Management System. Navigate using the menu to manage data."
+        );
       }
     </script>
   </body>

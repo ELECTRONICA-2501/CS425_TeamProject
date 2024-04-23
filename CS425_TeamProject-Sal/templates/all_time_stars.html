@@ -4,100 +4,109 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage All Time Stars</title>
-    <link rel="stylesheet" href="templates/yerp.css" />
     <style>
+        /* Base styles */
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f4f4;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #C9082A, #17408b); /* Gradient from red to blue */
+            color: #ffffff;
+            line-height: 1.6;
             margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        .container {
-            max-width: 1100px;
-            margin: auto;
-            overflow: hidden;
-            padding: 0 20px;
-        }
-        .header {
-            background: #333;
-            color: #fff;
             padding: 20px;
-            margin-bottom: 10px;
+        }
+        
+        /* Container */
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            padding: 20px;
+            background-color: #ffffff;
+            color: #333;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+        }
+
+        /* Headings */
+        .header {
+            background-color: #C9082A;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 20px;
         }
         .header h1 {
-            text-align: center;
             margin: 0;
         }
+
+        /* Forms */
         form {
-            background: #fff;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background-color: #fff;
             padding: 20px;
-            margin-bottom: 20px;
             border-radius: 5px;
-            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
         }
-        .form-group {
-            margin-bottom: 20px;
-        }
+
         .form-group label {
             display: block;
             margin-bottom: 5px;
         }
-        .form-group input[type="number"],
-        .form-group input[type="submit"] {
+
+        .form-group input[type="number"], input[type="submit"] {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
             width: 100%;
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #ddd;
         }
+
         input[type="submit"] {
-            background-color: #5cb85c;
-            border-color: #4cae4c;
+            background: linear-gradient(to right, #C9082A, #17408b); /* Gradient from red to blue */
             color: white;
-            margin-top: 10px;
             cursor: pointer;
+            border: none;
+            transition: background-color 0.3s;
         }
+
         input[type="submit"]:hover {
-            background-color: #449d44;
+            background-color: #17408b; /* NBA dark blue */
         }
+
+        /* Tables */
         table {
             width: 100%;
-            margin-bottom: 20px;
             border-collapse: collapse;
+            margin-top: 20px;
         }
+
         th, td {
-            text-align: left;
-            padding: 12px;
             border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
         }
+
         th {
-            background-color: #333;
-            color: #fff;
+            background-color: #17408b; /* NBA dark blue */
+            color: white;
         }
+
         td {
             background-color: #fff;
+            color: #333;
         }
-        .action-button {
-            display: inline-block;
-            padding: 5px 10px;
-            margin-right: 5px;
-            border-radius: 5px;
-            cursor: pointer;
-            background-color: #f44336;
-            color: white;
-        }
-        .action-button:hover {
-            opacity: 0.9;
-        }
+
+        /* Links */
         a.back-button {
-            display: inline-block;
-            padding: 10px 15px;
-            border-radius: 5px;
             background-color: #333;
             color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
             text-decoration: none;
             margin-top: 20px;
         }
+
         a.back-button:hover {
             background-color: #555;
         }
@@ -113,17 +122,17 @@
         <form action="/alltimestars" method="post">
             <div class="form-group">
                 <label for="player_id">Player ID (Optional):</label>
-                <input type="number" id="player_id" name="player_id" placeholder="Player ID">
+                <input type="number" id="player_id" name="player_id" placeholder="Player ID" />
             </div>
             <div class="form-group">
                 <label for="coach_id">Coach ID (Optional):</label>
-                <input type="number" id="coach_id" name="coach_id" placeholder="Coach ID">
+                <input type="number" id="coach_id" name="coach_id" placeholder="Coach ID" />
             </div>
             <div class="form-group">
                 <label for="season_id">Season ID:</label>
-                <input type="number" id="season_id" name="season_id" placeholder="Season ID" required>
+                <input type="number" id="season_id" name="season_id" placeholder="Season ID" required />
             </div>
-            <input type="submit" value="Add Star">
+            <input type="submit" value="Add Star" />
         </form>
         <table>
             <tr>
@@ -138,10 +147,10 @@
             <tr>
                 <td>1</td>
                 <td>23</td>
-                <td>45</td>
+                <td>45</td
                 <td>2022</td>
                 <td>
-                    <button class="action-button">Delete</button>
+                    <button style="background-color: #C9082A; color: white; padding: 5px 10px; border-radius: 5px; cursor: pointer;">Delete</button>
                 </td>
             </tr>
             <!-- End example row -->
