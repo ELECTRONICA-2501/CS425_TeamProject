@@ -138,7 +138,7 @@ def manage_seasons():
 
 
 
-
+#
 @app.route('/games', methods=['GET', 'POST'])
 def manage_games():
     conn = create_connection()
