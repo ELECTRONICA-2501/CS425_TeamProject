@@ -12,7 +12,7 @@ def create_connection():
         connection = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="ISSA3001k$", #getpass("Enter password: "), 
+            password="", #getpass("Enter password: "), 
             database="nba_DB_2"
         )
         return connection
